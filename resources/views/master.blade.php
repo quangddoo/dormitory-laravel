@@ -16,11 +16,8 @@
         <link rel="stylesheet" href="{{asset('css/custom.css')}}">
         <link rel="stylesheet" href="{{asset('css/black.css')}}">
         <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="js/jquery-1.11.0.min.js"></script>
-        <script src="https://lichngaytot.com/Scripts/jquery-1.11.0.min.js"></script><script src="https://lichngaytot.com/Scripts/jquery-ui.min.js"></script>
-        <script src="https://lichngaytot.com/Scripts/widgetlichthang.js"></script>
+        <script src="js/jquery-1.11.3.min.js"></script>
+
     </head>
     <body class="page-body skin-black">
         <div class="page-container">
