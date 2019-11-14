@@ -31,6 +31,7 @@ class StudentController extends Controller
         $ttphong = phong::where('id_khu', '=', $id)->paginate(7);
         return view('pages.Student_dkphong', ['ttphong' => $ttphong]);
     }
+
     #----------Xem_đăng_kí----------------------------------------------------------------------------------------------
     public function student_xemdk(){
         $mssv = sinhvien::where('email',Auth::user()->email)->value('mssv');
@@ -40,4 +41,13 @@ class StudentController extends Controller
         return view('pages.Student_xemdk',['lsdk'=>$lsdk,'ttphong'=>$ttphong,'ttkhu'=>$ttkhu]);
     }
 
+    #----------Thông_tin_cá_nhân----------------------------------------------------------------------------------------
+    public function student_ttcn(){
+        $ttsv = sinhvien::where('email', Auth::user()->email)->first();
+        return view('pages.Student_ttcn', ['ttsv' => $ttsv]);
+    }
+
+
 }
+
+
