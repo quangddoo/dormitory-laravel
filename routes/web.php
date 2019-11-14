@@ -24,3 +24,13 @@ Route::post('register','AuthController@postRegister');
 Route::get('forgot','AuthController@getForgot')->name('forgot');
 
 #--------------------------------------
+
+#----------Student---------------------
+
+#----------Đăng_kí_phòng_ở--------
+Route::get('student_dkphong','StudentController@student_dkphong')->name('student_dkphong');
+Route::get('get_student_dkphong/{id}','LoadController@get_student_dkphong')->name('get_student_dkphong');
+Route::get('student_chonphong/{id}','StudentController@student_chonphong')->name('student_chonphong');
+
+#----------Xem đăng kí-----------
+Route::get('student_xemdk','StudentController@student_xemdk')->name('student_xemdk');
