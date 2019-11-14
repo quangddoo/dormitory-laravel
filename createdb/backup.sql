@@ -35,7 +35,8 @@ CREATE TABLE `canboquanly` (
   `qqcb` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sdt` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_khu` int(11) NOT NULL
+  `id_khu` int(11) NOT NULL,
+  `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -58,7 +59,8 @@ INSERT INTO `canboquanly` (`mscb`, `nscb`, `gtcb`, `qqcb`, `sdt`, `email`, `id_k
 CREATE TABLE `khuktx` (
   `id` int(11) NOT NULL,
   `tenkhu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `giaphong` int(11) NOT NULL
+  `giaphong` int(11) NOT NULL,
+  `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -142,7 +144,8 @@ CREATE TABLE `phong` (
   `id_khu` int(11) NOT NULL,
   `sncur` int(11) NOT NULL,
   `snmax` int(11) NOT NULL,
-  `gioitinh` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL
+  `gioitinh` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -225,7 +228,8 @@ CREATE TABLE `sinhvien` (
   `khoa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `qqsv` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sdt` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `sdt` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
