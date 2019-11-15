@@ -34,3 +34,12 @@ Route::get('student_chonphong/{id}','StudentController@student_chonphong')->name
 
 #----------Xem đăng kí-----------
 Route::get('student_xemdk','StudentController@student_xemdk')->name('student_xemdk');
+
+#----------Thông_tin_cá_nhân-----------------
+Route::get('student_ttcn','StudentController@student_ttcn')->name('student_ttcn');
+Route::get('student_chinhsua','LoadController@getStudent_chinhsua')->name('student_chinhsua');
+Route::post('student_chinhsua','LoadController@postStudent_chinhsua')->name('student_chinhsua');
+Route::post('student_suatt','LoadController@student_suatt')->name('student_suatt');
+
+
+
