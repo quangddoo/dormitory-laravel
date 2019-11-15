@@ -47,6 +47,29 @@ class StudentController extends Controller
         return view('pages.Student_ttcn', ['ttsv' => $ttsv]);
     }
 
+    #----------Thành_viên_cùng_phòng------------------------------------------------------------------------------------
+    public function student_bancp(){
+        $mssv = sinhvien::where('email',Auth::user()->email)->value('mssv');
+        $id_phong = phieudangky::where([
+            ['mssv',$mssv],
+            ['nam',date('Y')],
+            ['trangthaidk','success']
+        ])->value('id_phong');
+        $list = phieudangky::where([
+            ['nam',date('Y')],
+            ['trangthaidk','success'],
+            ['id_phong',$id_phong]
+        ])->get();
+        $ttsv = sinhvien::all();
+        return view('pages.Student_bancp',['list'=>$list,'ttsv'=>$ttsv]);
+    }
+
+    #----------Cán_bộ_quản_lý-------------------------------------------------------------------------------------------
+    public function student_cbql(){
+        $cbql = users::where('ltk', 'quanly')->get();
+        return view('pages.Student_cbql', ['cbql' => $cbql]);
+    }
+
 
 }
 

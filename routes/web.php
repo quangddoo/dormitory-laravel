@@ -41,5 +41,9 @@ Route::get('student_chinhsua','LoadController@getStudent_chinhsua')->name('stude
 Route::post('student_chinhsua','LoadController@postStudent_chinhsua')->name('student_chinhsua');
 Route::post('student_suatt','LoadController@student_suatt')->name('student_suatt');
 
+#----------Thành_viên_cùng_phòng---
+Route::get('student_bancp','StudentController@student_bancp')->name('student_bancp');
 
+#---------Thông_tin_cán_bộ------------------
+Route::get('student_cbql','StudentController@student_cbql')->name('student_cbql');
 
