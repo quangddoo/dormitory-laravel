@@ -18,16 +18,18 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    //
+    //Trang Chu
+    public function trangchu(){
+        return view('pages.trangchu');
+    }
+
     #----------Đăng_kí_phòng_ở------------------------------------------------------------------------------------------
-    public function student_dkphong()
-    {
+    public function student_dkphong(){
         $ttkhu = khuktx::ALL();
         return view('pages.Student_dkphong', ['ttkhu' => $ttkhu]);
     }
 
-    public function student_chonphong($id)
-    {
+    public function student_chonphong($id){
         $ttphong = phong::where('id_khu', '=', $id)->paginate(7);
         return view('pages.Student_dkphong', ['ttphong' => $ttphong]);
     }
@@ -63,12 +65,19 @@ class StudentController extends Controller
         $ttsv = sinhvien::all();
         return view('pages.Student_bancp',['list'=>$list,'ttsv'=>$ttsv]);
     }
+    #----------Đổi mật khẩu---------------------------------------------------------------------------------------------
+    public function student_doimk(){
+        return view('pages.Student_doimk');
+    }
 
     #----------Cán_bộ_quản_lý-------------------------------------------------------------------------------------------
     public function student_cbql(){
         $cbql = users::where('ltk', 'quanly')->get();
         return view('pages.Student_cbql', ['cbql' => $cbql]);
     }
+
+
+
 
 
 }
