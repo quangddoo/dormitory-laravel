@@ -54,3 +54,23 @@ Route::get('student_bancp','StudentController@student_bancp')->name('student_ban
 
 #---------Thông_tin_cán_bộ------------------
 Route::get('student_cbql','StudentController@student_cbql')->name('student_cbql');
+
+#-----------------Admin---------------------
+#--------------Danh-sách-cán-bộ-------------
+Route::get('list','PageController@admin_list_cb')->name('admin_list_cb');
+
+#--------------Thông-tin-cán-bộ-------------
+Route::get('info','PageController@admin_info_cb')->name('admin_info_cb');
+Route::post('post_admin_info_cb','LoadController@post_admin_info_cb')->name('post_admin_info_cb');
+Route::get('details/{id}','LoadController@admin_details_cb')->name('admin_details_cb');
+
+#--------------Thêm-sửa-xoá-cán-bộ----------
+Route::get('add','PageController@admin_add_cb')->name('admin_add_cb');
+Route::post('create','AuthController@admin_create_account')->name('admin_create_account');
+Route::post('update/{mscb}','LoadController@admin_update_cb')->name('admin_update_cb');
+Route::get('delete/{id}','LoadController@admin_delete_cb')->name('admin_delete_cb');
+
+#----------------Thống-kê-------------------
+Route::get('statics','PageController@admin_statics')->name('admin_statics');
+Route::post('post_statics','LoadController@post_admin_statics')->name('post_admin_statics');
+#-------------------------------------------
