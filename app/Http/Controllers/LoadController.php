@@ -59,7 +59,7 @@ class LoadController extends Controller
          return view('pages.cbql_ttsv',['ttsv'=>$ttsv,'name'=>$name,'ttphong'=>$ttphong,'lsdk'=>$lsdk]);
       }
 
-}
+
 #------------------------------------------------------------------------
     public function get_student_dkphong($id){
         $ttsv = sinhvien::where('email',Auth::user()->email)->first();

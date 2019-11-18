@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CanboController extends Controller
 {
-    //
+    //Trang Chu
+    public function trangchu(){
+        return view('pages.trangchu');
+    }
+
     #Duyệt ĐK
     public function cbql_duyetdk(){
         $id_khu = canboquanly::where('email',Auth::user()->email)->value('id_khu');
@@ -33,8 +37,8 @@ class CanboController extends Controller
         ])->get();
         return view('pages.cbql_duyetdk',['list'=>$list,'ttphong'=>$ttphong]);
     }
-    
+
     #Xem Danh sách phòng
-    
+
 
 }

@@ -23,7 +23,7 @@ Route::get('register','AuthController@getRegister')->name('register');
 Route::post('register','AuthController@postRegister');
 Route::get('forgot','AuthController@getForgot')->name('forgot');
 
-#--------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 
 #-------------CBQL---------------------
 
@@ -31,7 +31,7 @@ Route::get('cbql_duyetdk','CanboController@cbql_duyetdk')->name('cbql_duyetdk');
 Route::get('get_cbql_duyetdk/{mssv}','LoadController@get_cbql_duyetdk')->name('get_cbql_duyetdk');
 Route::get('get_cbql_huydk/{mssv}','LoadController@get_cbql_huydk')->name('get_cbql_huydk');
 Route::get('get_cbql_ttsv/{mssv}','LoadController@get_cbql_ttsv')->name('get_cbql_ttsv');
-#--------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 
 #----------Student---------------------
 
@@ -54,3 +54,4 @@ Route::get('student_bancp','StudentController@student_bancp')->name('student_ban
 
 #---------Thông_tin_cán_bộ------------------
 Route::get('student_cbql','StudentController@student_cbql')->name('student_cbql');
+#-----------------------------------------------------------------------------------------------------------------------
