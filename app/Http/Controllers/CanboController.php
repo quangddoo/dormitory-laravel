@@ -18,12 +18,22 @@ use Illuminate\Support\Facades\Auth;
 
 class CanboController extends Controller
 {
-    //Trang Chu
-    public function trangchu(){
-        return view('pages.trangchu');
+
+    #----------------Xem Danh sách phòng--------------------------------------------------------------------------------
+    public function ql_phong(){
+        $id_khu = canboquanly::where('email',Auth::user()->email)->value('id_khu');
+        $ttphong = phong::where('id_khu',$id_khu)->paginate(7);
+        return view('pages.cbql_phong',['ttphong'=>$ttphong]);
+    }
+    #-------------Xem thông tin Sinh viên ------------------------------------------------------------------------------
+    public function cbql_ttsv(){
+        return view('pages.cbql_ttsv');
+    }
+    public function cbql_cpsv(){
+        return view('pages.cbql_cpsv');
     }
 
-    #Duyệt ĐK
+    #---------------Duyệt ĐK--------------------------------------------------------------------------------------------
     public function cbql_duyetdk(){
         $id_khu = canboquanly::where('email',Auth::user()->email)->value('id_khu');
         $ttphong = phong::where('id_khu',$id_khu)->get();
@@ -37,8 +47,4 @@ class CanboController extends Controller
         ])->get();
         return view('pages.cbql_duyetdk',['list'=>$list,'ttphong'=>$ttphong]);
     }
-
-    #Xem Danh sách phòng
-
-
 }

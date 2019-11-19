@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    //
     #----------Đăng_kí_phòng_ở------------------------------------------------------------------------------------------
     public function student_dkphong()
     {
@@ -32,7 +31,7 @@ class StudentController extends Controller
         return view('pages.Student_dkphong', ['ttphong' => $ttphong]);
     }
 
-    #----------Xem_đăng_kí----------------------------------------------------------------------------------------------
+    #----------Xem_trạng thái đăng_kí-----------------------------------------------------------------------------------
     public function student_xemdk(){
         $mssv = sinhvien::where('email',Auth::user()->email)->value('mssv');
         $lsdk = phieudangky::where('mssv','=',$mssv)->get();
