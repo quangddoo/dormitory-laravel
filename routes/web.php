@@ -49,6 +49,8 @@ Route::get('get_cbql_ttsv/{mssv}','LoadController@get_cbql_ttsv')->name('get_cbq
 Route::post('post_cbql_ttsv','LoadController@post_cbql_ttsv')->name('post_cbql_ttsv');
 
 #-----------Thống kê----------------------------------------------------------------------------------------------------
+Route::get('cbql_thongke','CanboController@cbql_thongke')->name('cbql_thongke');
+Route::post('post_cbql_thongke','LoadController@post_cbql_thongke')->name('post_cbql_thongke');
 
 
 
