@@ -18,11 +18,6 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    //Trang Chu
-    public function trangchu(){
-        return view('pages.trangchu');
-    }
-
     #----------Đăng_kí_phòng_ở------------------------------------------------------------------------------------------
     public function student_dkphong(){
         $ttkhu = khuktx::ALL();
@@ -34,7 +29,7 @@ class StudentController extends Controller
         return view('pages.Student_dkphong', ['ttphong' => $ttphong]);
     }
 
-    #----------Xem_đăng_kí----------------------------------------------------------------------------------------------
+    #----------Xem_trạng thái đăng_kí-----------------------------------------------------------------------------------
     public function student_xemdk(){
         $mssv = sinhvien::where('email',Auth::user()->email)->value('mssv');
         $lsdk = phieudangky::where('mssv','=',$mssv)->get();
@@ -75,11 +70,6 @@ class StudentController extends Controller
         $cbql = users::where('ltk', 'quanly')->get();
         return view('pages.Student_cbql', ['cbql' => $cbql]);
     }
-
-
-
-
-
 }
 
 
