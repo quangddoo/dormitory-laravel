@@ -114,6 +114,9 @@ class LoadController extends Controller
 
 #============================================STUDENT====================================================================
 #-------Sinh viên đăng kí phòng-----------------------------------------------------------------------------------------
+
+    #----------Đăng_kí_phòng_ở------------------------------------------------------------------------------------------
+
     public function get_student_dkphong($id){
         $ttsv = sinhvien::where('email',Auth::user()->email)->first();
         $ttphong = phong::where('id',$id)->first();
@@ -167,6 +170,8 @@ class LoadController extends Controller
     }
 
     #-------Sinh viên sửa thông tin-------------------------------------------------------------------------------------
+    #----------Thay đổi thông tin cá nhân-------------------------------------------------------------------------------
+
     public function getStudent_chinhsua(){
         return view('pages.Student_chinhsua');
     }
@@ -191,6 +196,7 @@ class LoadController extends Controller
     }
 
     #----------Sinh viên đổi mật khẩu-----------------------------------------------------------------------------------
+    #----------Thay đổi mật khẩu----------------------------------------------------------------------------------------
     public function changePassword(Request $request){
         $rules = [
             'password' => 'required|min:6|confirmed'
@@ -218,6 +224,5 @@ class LoadController extends Controller
             }
         }
     }
-    #===================================================================================================================
 }
 

@@ -22,6 +22,8 @@ Route::get('logout','AuthController@logout')->name('logout');
 Route::get('register','AuthController@getRegister')->name('register');
 Route::post('register','AuthController@postRegister');
 Route::get('forgot','AuthController@getForgot')->name('forgot');
+Route::post('changePassword','LoadController@changePassword');
+
 
 #=======================================================================================================================
 
@@ -74,4 +76,7 @@ Route::get('student_bancp','StudentController@student_bancp')->name('student_ban
 #---------Thông_tin_cán_bộ----------------------------------------------------------------------------------------------
 Route::get('student_cbql','StudentController@student_cbql')->name('student_cbql');
 
-#=======================================================================================================================
+#----------Đổi_mật_khẩu---------------------
+Route::get('student_doimk','StudentController@student_doimk')->name('student_doimk');
+
+
