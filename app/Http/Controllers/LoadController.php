@@ -110,6 +110,44 @@ class LoadController extends Controller
         }
     }
 
+
+
+    public function post_cbql_thongke(Request $request){
+        $year = $request->input('nam');
+        $list_nam = phieudangky::select('nam')->groupBy('nam')->get();
+        $id_khu = canboquanly::where('email',Auth::user()->email)->value('id_khu');
+        $max = phong::where('id_khu',$id_khu)->max('id');
+        $count = phong::where('id_khu',$id_khu)->count();
+        $nam = phong::where([
+            ['id_khu',$id_khu],
+            ['gioitinh','nam'],
+        ])->sum('snmax');
+        $nu = phong::where([
+            ['id_khu',$id_khu],
+            ['gioitinh','nu']
+        ])->sum('snmax');
+        $nam_dkcur = phong::where([
+            ['id_khu',$id_khu],
+            ['gioitinh','nam']
+        ])->sum('sncur');
+        $nu_dkcur = phong::where([
+            ['id_khu',$id_khu],
+            ['gioitinh','nu']
+        ])->sum('sncur');
+        $total_student = phieudangky::where([
+            ['nam',$year],
+            ['trangthaidk','!=','cancelled'],
+            ['trangthaidk','!=','registered']
+        ])->count();
+        $total_money = phieudangky::where([
+            ['nam',$year],
+            ['trangthaidk','!=','cancelled'],
+            ['trangthaidk','!=','registered']
+        ])->sum('lephi');
+        return view('pages.cbql_thongke',['nam'=>$nam,'nu'=>$nu,'nam_dkcur'=>$nam_dkcur,'nu_dkcur'=>$nu_dkcur,'total_student'=>$total_student,'total_money'=>$total_money,'list_nam'=>$list_nam,'year'=>$year]);
+    }
+
+
 #=======================================================================================================================
 
 #============================================STUDENT====================================================================
