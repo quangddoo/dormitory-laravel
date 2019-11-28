@@ -19,4 +19,21 @@ class PageController extends Controller
 	public function trangchu(){
     	return view('pages.trangchu');
     }
+    public function admin_list_cb(){
+        $manager = users::where('ltk','quanly')->get();
+        return view('pages.admin_list_cb',['manager'=>$manager]);
+    }
+    public function admin_info_cb(){
+        return view('pages.admin_info_cb');
+    }
+    public function admin_statics(){
+        $list_nam = phieudangky::select('nam')->groupBy('nam')->get();
+        $list_khu = khuktx::all();
+        return view('pages.admin_statics',['list_nam'=>$list_nam,'list_khu'=>$list_khu]);
+    }
+    public function admin_add_cb(){
+        $mscb = canboquanly::max('mscb');
+        $mscb = $mscb + 1;
+        return view('pages.admin_create_account',['mscb'=>$mscb]);
+    }
 }

@@ -10,6 +10,7 @@ use App\users;
 use App\User;
 use Hash;
 use App\sinhvien;
+use App\canboquanly;
 
 class AuthController extends Controller
 {
@@ -89,6 +90,42 @@ class AuthController extends Controller
     }
     public function getForgot() {
         return view('auth.forgot');
+    }
+
+    public function admin_create_account(Request $request){
+         $rules = [
+            'email' =>'required|email',
+            'password' => 'required|min:6|confirmed'
+        ];
+        $messages = [
+            'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+            'password.confirmed' => 'Xác nhận mật khẩu không đúng'
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $email = $request->input('email');
+            $count = users::where('email',$email)->count();
+            if($count>0){
+                return redirect()->back()->with(['flag'=>'danger','message'=>'Email đã được sử dụng']);   
+            }
+            else{
+                $mscb = canboquanly::max('mscb') + 1;
+                $user = new User();
+                canboquanly::insert(['mscb'=>$mscb,'email'=>$email]);
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->image = "user.jpg";
+                $user->ltk = "quanly";
+                $user->save();
+                $id = users::where('email',$email)->value('id');
+                return redirect()->route('admin_details_cb',$id)->with(['flag2'=>'danger','message'=>'Tạo thành khoản thành công, mời cập nhật thông tin cán bộ']);
+
+            }
+        }
     }
 }
 

@@ -30,12 +30,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `canboquanly` (
   `mscb` int(11) NOT NULL,
-  `nscb` date NOT NULL,
-  `gtcb` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qqcb` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sdt` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nscb` date DEFAULT NULL,
+  `gtcb` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `qqcb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sdt` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_khu` int(11) NOT NULL,
+  `id_khu` int(11) DEFAULT NULL,
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
