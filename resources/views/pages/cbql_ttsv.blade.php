@@ -2,13 +2,13 @@
 @section('content')
 <h3 style="">
     <i class="fa fa-arrow-circle-o-right"></i>
-    Thông tin sinh viên           
+    Thông tin sinh viên
 </h3>
 ﻿<div class="row">
         <div class="col-xs-6 col-left"></div>
         <div class="col-xs-6 col-right">
             <div class="dataTables_filter" id="table_export_filter">
-                <form action="{{url('post_ql_ttsv')}}" method="post">
+                <form action="{{url('post_cbql_ttsv')}}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }} ">
                     <label>Nhập mã số sinh viên: <input type="text" name="mssv" required=""></label>
                     <button type="submit">Tìm kiếm</button>
@@ -17,7 +17,7 @@
                     @endif
                 </form>
             </div>
-        </div> 
+        </div>
     <div class="col-md-12">
         <!------CONTROL TABS START------>
         <ul class="nav nav-tabs bordered">
@@ -91,7 +91,7 @@
             </div>
             <h3 style="">
             <i class="fa fa-arrow-circle-o-right"></i>
-                Lịch sử đăng ký           
+                Lịch sử đăng ký
         </h3>
         <div class="lsdk">
         <table class="table table-bordered table-striped datatable" id="table_export">
@@ -124,14 +124,14 @@
                                 class="label label-success"
                             @elseif($l->trangthaidk=="cancelled")
                                 class="label label-danger"
-                            @else class="label label-success" 
-                            @endif 
+                            @else class="label label-success"
+                            @endif
                             style="font-size: 15px;">{{$l->trangthaidk}}</span>
                 </td>
                 <td>{{$l->ngaydk}}</td>
                 <td>{{$l->updated_at}}</td>
                 <td>{{$l->lephi}}</td>
-                <td>{{$l->mscb}}</td>       
+                <td>{{$l->mscb}}</td>
             </tr>
             @endforeach
         </tbody>
