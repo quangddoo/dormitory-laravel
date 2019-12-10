@@ -15,7 +15,11 @@ use App\canboquanly;
 class AuthController extends Controller
 {
     public function getLogin() {
-    	return view('auth.login');
+        if(Auth::check()){
+            return redirect()->back();
+        } else {
+    	   return view('auth.login');
+        }
     }
     public function postLogin(Request $request) {
     	$rules = [

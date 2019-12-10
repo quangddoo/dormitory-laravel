@@ -41,8 +41,10 @@
                         @include('sinhvien_main_menu')
                     @elseif(Auth::user()->ltk=="quanly")
                         @include('quanly_main_menu')
-                    @else
+                    @elseif(Auth::user()->ltk=="admin")
                         @include('admin_main_menu')
+                    @else
+                        @return view('auth.login');
                     @endif
                 @endif
             </div>

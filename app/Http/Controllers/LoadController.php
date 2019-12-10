@@ -263,24 +263,6 @@ class LoadController extends Controller
         }
     }
   
-    public function student_suatt(Request $request){
-        $nssv = $request->input('birthday');
-        $gtsv = $request->input('gtsv');
-        $lop = $request->input('lop');
-        $khoa = $request->input('khoa');
-        $qqsv = $request->input('qqsv');
-        $sdt = $request->input('phone');
-        $mssv = sinhvien::where('email',Auth::user()->email)->value('mssv');
-        $count = phieudangky::where('mssv',$mssv)->count();
-        if($count!=0){
-            sinhvien::where('email',Auth::user()->email)->update(['nssv'=>$nssv,'lop'=>$lop,'khoa'=>$khoa,'qqsv'=>$qqsv,'sdt'=>$sdt]);
-            return redirect()->back()->with(['flag2'=>'danger','message'=>'Cập nhật thông tin thành công']);
-        }
-        else{
-            sinhvien::where('email',Auth::user()->email)->update(['nssv'=>$nssv,'gtsv'=>$gtsv,'lop'=>$lop,'khoa'=>$khoa,'qqsv'=>$qqsv,'sdt'=>$sdt]);
-            return redirect()->back()->with(['flag2'=>'danger','message'=>'Cập nhật thông tin thành công']);
-        }
-    }
 
     #-----------------------------Admin-------------------------------------------
         public function admin_details_cb($id){
