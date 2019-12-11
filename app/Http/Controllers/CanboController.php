@@ -71,11 +71,15 @@ class CanboController extends Controller
             ['gioitinh','nu']
         ])->sum('sncur');
         $total_student = phieudangky::where([
+            ['id_phong','>',($max-$count)],
+            ['id_phong','<=',$max],
             ['nam',date('Y')],
             ['trangthaidk','!=','cancelled'],
             ['trangthaidk','!=','registered']
         ])->count();
         $total_money = phieudangky::where([
+            ['id_phong','>',($max-$count)],
+            ['id_phong','<=',$max],
             ['nam',date('Y')],
             ['trangthaidk','!=','cancelled'],
             ['trangthaidk','!=','registered']

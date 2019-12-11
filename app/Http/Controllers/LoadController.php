@@ -76,16 +76,32 @@ class LoadController extends Controller
         $id_khu = canboquanly::where('email',Auth::user()->email)->value('id_khu');
         $max = phong::where('id_khu',$id_khu)->max('id');
         $count = phong::where('id_khu',$id_khu)->count();
-        $ttsv = sinhvien::where('mssv',$mssv)->first();
-        $name = users::where('email',$ttsv->email)->value('name');
+        $countsv = sinhvien::where('mssv',$mssv)->count();
+        $countdk = phieudangky::where([
+            ['mssv',$mssv],
+            ['trangthaidk','!=','cancelled'],
+            ['id_phong','>',($max-$count)],
+            ['id_phong','<=',$max]
+        ])->count();
         $lsdk = phieudangky::where([
             ['mssv',$mssv],
             ['trangthaidk','!=','cancelled'],
             ['id_phong','>',($max-$count)],
             ['id_phong','<=',$max]
         ])->orderBy('nam','desc')->get();
+        $countdk = count($lsdk);
         $ttphong = phong::all();
-        return view('pages.cbql_ttsv',['ttsv'=>$ttsv,'name'=>$name,'ttphong'=>$ttphong,'lsdk'=>$lsdk]);
+        if ($countsv!=1) {
+            return redirect('cbql_ttsv')->with(['flag'=>'danger','message'=>'Không tồn tại sinh viên']);
+        }
+        elseif($countdk==0){
+            return redirect('cbql_ttsv')->with(['flag'=>'danger','message'=>'Sinh viên chưa đăng ký ở khu này']);
+        }
+        else{
+            $ttsv = sinhvien::where('mssv',$mssv)->first();
+            $name = users::where('email',$ttsv->email)->value('name');
+            return view('pages.cbql_ttsv',['ttsv'=>$ttsv,'name'=>$name,'ttphong'=>$ttphong,'lsdk'=>$lsdk]);
+        }
     }
 
     public function post_cbql_ttsv(Request $request){
@@ -93,6 +109,13 @@ class LoadController extends Controller
         $mssv = $request->input('mssv');
         $max = phong::where('id_khu',$id_khu)->max('id');
         $count = phong::where('id_khu',$id_khu)->count();
+        $countsv = sinhvien::where('mssv',$mssv)->count();
+        $countdk = phieudangky::where([
+            ['mssv',$mssv],
+            ['trangthaidk','!=','cancelled'],
+            ['id_phong','>',($max-$count)],
+            ['id_phong','<=',$max]
+        ])->count();
         $lsdk = phieudangky::where([
             ['mssv',$mssv],
             ['trangthaidk','!=','cancelled'],
@@ -100,8 +123,11 @@ class LoadController extends Controller
             ['id_phong','<=',$max]
         ])->orderBy('nam','desc')->get();
         $ttphong = phong::all();
-        if($lsdk==null){
-            return redirect('cbql_ttsv')->with(['flag'=>'danger','message'=>'Không thể xem thông tin sinh viên']);
+        if ($countsv!=1) {
+            return redirect('cbql_ttsv')->with(['flag'=>'danger','message'=>'Không tồn tại sinh viên']);
+        }
+        elseif($countdk==0){
+            return redirect('cbql_ttsv')->with(['flag'=>'danger','message'=>'Sinh viên chưa đăng ký ở khu này']);
         }
         else{
             $ttsv = sinhvien::where('mssv',$mssv)->first();
@@ -135,11 +161,15 @@ class LoadController extends Controller
             ['gioitinh','nu']
         ])->sum('sncur');
         $total_student = phieudangky::where([
+            ['id_phong','>',($max-$count)],
+            ['id_phong','<=',$max],
             ['nam',$year],
             ['trangthaidk','!=','cancelled'],
             ['trangthaidk','!=','registered']
         ])->count();
         $total_money = phieudangky::where([
+            ['id_phong','>',($max-$count)],
+            ['id_phong','<=',$max],
             ['nam',$year],
             ['trangthaidk','!=','cancelled'],
             ['trangthaidk','!=','registered']
