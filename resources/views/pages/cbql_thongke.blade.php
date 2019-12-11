@@ -18,16 +18,27 @@
             <form action="{{url('post_cbql_thongke')}}" method="post" class="form-horizontal form-groups-bordered validate" target="_top" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }} ">
                 <select name="nam" class="form-control required">
-                    <option value="">Chọn năm</option>
-                    @foreach($list_nam as $l)
-                        <option value="{{$l->nam}}">{{$l->nam}}</option>
-                    @endforeach
+                    @if(isset($year))
+                        @foreach($list_nam as $l)
+                        @if($year==$l->nam)
+                            <option selected value="{{$l->nam}}">{{$year}}</option>
+                        @else
+                            <option value="{{$l->nam}}">{{$l->nam}}</option>
+                        @endif
+                        @endforeach
+                    @else
+                        <option value="">Chọn năm</option>
+                        @foreach($list_nam as $l)
+                            <option value="{{$l->nam}}">{{$l->nam}}</option>
+                        @endforeach
+                    @endif
                 </select>
                 <div class="col-sm-offset-3 col-sm-5">
                     <button type="submit" class="btn btn-info">Xem thống kê</button>
                 </div>
             </form>
         </div>
+        @if(isset($year))
         <div class="tab-content">
             <!----EDITING FORM STARTS-->
             <div class="tab-pane box active" id="list" style="padding: 5px">
@@ -68,6 +79,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 @endsection

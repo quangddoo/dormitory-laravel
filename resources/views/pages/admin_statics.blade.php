@@ -20,17 +20,37 @@
             <form action="{{url('post_statics')}}" method="post" class="form-horizontal form-groups-bordered validate" target="_top" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }} ">
                 <select name="nam" class="form-control required">
-                    <option value="">Chọn năm</option>
-                    @foreach($list_nam as $l)
-                        <option value="{{$l->nam}}">{{$l->nam}}</option>
-                    @endforeach
+                    @if(isset($year))
+                        @foreach($list_nam as $l)
+                        @if($year==$l->nam)
+                            <option selected value="{{$l->nam}}">{{$year}}</option>
+                        @else
+                            <option value="{{$l->nam}}">{{$l->nam}}</option>
+                        @endif
+                        @endforeach
+                    @else
+                        <option value="">Chọn năm</option>
+                        @foreach($list_nam as $l)
+                            <option value="{{$l->nam}}">{{$l->nam}}</option>
+                        @endforeach
+                    @endif
                 </select>
                 <input type="hidden" name="_token" value="{{ csrf_token() }} ">
                 <select name="mskhu" class="form-control required">
-                    <option value="">Chọn khu ở</option>
-                    @foreach($list_khu as $k)
-                        <option value="{{$k->id}}">{{$k->tenkhu}}</option>
-                    @endforeach
+                    @if(isset($khu))
+                        @foreach($list_khu as $k)
+                        @if($khu==$k->tenkhu)
+                            <option selected value="{{$k->id}}">{{$khu}}</option>
+                        @else
+                            <option value="{{$k->id}}">{{$k->tenkhu}}</option>
+                        @endif
+                        @endforeach
+                    @else
+                        <option value="">Chọn khu ở</option>
+                        @foreach($list_khu as $k)
+                            <option value="{{$k->id}}">{{$k->tenkhu}}</option>
+                        @endforeach
+                    @endif
                 </select>
                 <div class="col-sm-offset-3 col-sm-5">
                     <button type="submit" class="btn btn-info">Xem thống kê</button>
@@ -38,7 +58,7 @@
             </form>
         </div>
     </div>
-        @if(isset($nam))
+        @if(isset($year)&&isset($khu))
         <div class="tab-content">
             <!----EDITING FORM STARTS-->
             <div class="tab-pane box active" id="list" style="padding: 5px">
