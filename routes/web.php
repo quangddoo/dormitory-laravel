@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('trangchu','PageController@trangchu')->name('trangchu');
-
 #=============================================AUTH======================================================================
 
-Route::get('','HomeController@index');
+Route::get('','PageController@index')->name('trangchu');
 Route::get('login','AuthController@getLogin')->name('login');
 Route::post('login','AuthController@postLogin');
 Route::get('logout','AuthController@logout')->name('logout');

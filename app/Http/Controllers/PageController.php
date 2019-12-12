@@ -16,8 +16,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
-	public function trangchu(){
-    	return view('pages.trangchu');
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
+    public function index() {
+        if(Auth::check()){
+            view()->share('user',Auth::user());
+            return view('pages.trangchu');
+        }
     }
     public function admin_list_cb(){
         $manager = users::where('ltk','quanly')->get();
