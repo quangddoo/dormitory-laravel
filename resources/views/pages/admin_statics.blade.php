@@ -17,7 +17,7 @@
         </ul>
     <div class="form-group">
         <div class="col-sm-3">
-            <form action="{{url('post_statics')}}" method="post" class="form-horizontal form-groups-bordered validate" target="_top" enctype="multipart/form-data">
+            <form action="{{url('statics')}}" method="post" class="form-horizontal form-groups-bordered validate" target="_top" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }} ">
                 <select name="nam" class="form-control required">
                     @if(isset($year))

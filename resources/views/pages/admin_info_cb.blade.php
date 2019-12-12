@@ -9,7 +9,7 @@
         <div class="col-xs-6 col-left"></div>
         <div class="col-xs-6 col-right">
             <div class="dataTables_filter" id="table_export_filter">
-                <form action="{{url('post_admin_info_cb')}}" method="post">
+                <form action="{{url('info')}}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }} ">
                     <label>Nhập mã số cán bộ: <input type="text" name="mscb" required=""></label>
                     <button type="submit">Tìm kiếm</button>
