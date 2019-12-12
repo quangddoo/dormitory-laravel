@@ -139,6 +139,7 @@ class LoadController extends Controller
 
 
     public function post_cbql_thongke(Request $request){
+        $data = DB::table('sinhvien')->join('phieudangky','phieudangky.mssv','=','sinhvien.mssv')->join('phong','phieudangky.id_phong','=','phong.id')->get();
         $year = $request->input('nam');
         $list_nam = phieudangky::select('nam')->groupBy('nam')->get();
         $id_khu = canboquanly::where('email',Auth::user()->email)->value('id_khu');
@@ -152,14 +153,14 @@ class LoadController extends Controller
             ['id_khu',$id_khu],
             ['gioitinh','nu']
         ])->sum('snmax');
-        $nam_dkcur = phong::where([
-            ['id_khu',$id_khu],
-            ['gioitinh','nam']
-        ])->sum('sncur');
-        $nu_dkcur = phong::where([
-            ['id_khu',$id_khu],
-            ['gioitinh','nu']
-        ])->sum('sncur');
+        $nam_dkcur=0;
+        $nu_dkcur=0;
+        foreach ($data as $d) {
+            if (($d->nam==$year)&&($d->id_khu==$id_khu)&&($d->trangthaidk!='cancelled')) {
+                if($d->gtsv=='nam'){$nam_dkcur = $nam_dkcur+1;}
+                else{$nu_dkcur = $nu_dkcur+1;}
+            }
+        }
         $total_student = phieudangky::where([
             ['id_phong','>',($max-$count)],
             ['id_phong','<=',$max],
@@ -337,6 +338,7 @@ class LoadController extends Controller
             return redirect()->route('admin_details_cb',$id)->with(['flag2'=>'danger','message'=>'Cập nhật thông tin thành công']);;
         }
         public function post_admin_statics(Request $request){
+            $data = DB::table('sinhvien')->join('phieudangky','phieudangky.mssv','=','sinhvien.mssv')->join('phong','phieudangky.id_phong','=','phong.id')->get();
             $year = $request->input('nam');
             $id_khu = $request->input('mskhu');
             if (isset($year)&&isset($id_khu)){
@@ -351,14 +353,14 @@ class LoadController extends Controller
                     ['id_khu',$id_khu],
                     ['gioitinh','nu']
                 ])->sum('snmax');
-                $nam_dkcur = phong::where([
-                    ['id_khu',$id_khu],
-                    ['gioitinh','nam']
-                ])->sum('sncur');
-                $nu_dkcur = phong::where([
-                    ['id_khu',$id_khu],
-                    ['gioitinh','nu']
-                ])->sum('sncur');
+                $nam_dkcur=0;
+                $nu_dkcur=0;
+                foreach ($data as $d) {
+                    if (($d->nam==$year)&&($d->id_khu==$id_khu)&&($d->trangthaidk!='cancelled')) {
+                        if($d->gtsv=='nam'){$nam_dkcur = $nam_dkcur+1;}
+                        else{$nu_dkcur = $nu_dkcur+1;}
+                    }
+                }
                 $total_student = phieudangky::where([
                     ['id_phong','>',($max-$count)],
                     ['id_phong','<=',$max],
